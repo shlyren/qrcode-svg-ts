@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover"
+  />
+ 
+  <style>
+    .form>div {
+      margin-top: 6px;
+      display: flex
+    }
+    .form>div>textarea {
+      flex: 1;
+      min-height: 100px;
+    }
+    .form>div>label {
+      margin-right: 4px;
+    }
+  </style>
+</head>
+
+
+<body>
+    <div id="container" style="min-height: 300px"></div>
+    <div class="form">
+        <div>
+          <label>内容:</label>
+          <textarea id="content"></textarea>
+        </div>
+        <div>
+          <label>颜色:</label>
+          <input type="color" id="color" />
+        </div>
+        <div style="margin-top: 24px">
+          <button onclick="onCreateQRCode()">生成二维码</button>
+        </div>
+    </div>
+    <script src="../dist/qrcode-svg-ts.min.js"></script>
+    <script>
+    
+        function onCreateQRCode() {
+          const content = document.getElementById('content').value
+          const color = document.getElementById('color').value
+          console.log(content, color);
+
+         try {
+          var qrcode = new QRCodeSVG({ content, color, join: true, width: 500, height: 500 });
+          var svg = qrcode.svg();
+          document.getElementById("container").innerHTML = svg;
+         } catch (error) {
+          alert(error)
+         }
+        }
+    </script>
+    </body>
+
+</html>

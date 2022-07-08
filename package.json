@@ -1,0 +1,38 @@
+{
+  "name": "qrcode-svg-ts",
+  "version": "1.1.11",
+  "description": "A simple QR Code generator in pure JavaScript",
+  "author": "SHLYREN",
+  "license": "MIT",
+  "files": [
+    "dist/*",
+    "README*"
+  ],
+  "main": "dist/qrcode-svg-ts.min.js",
+  "typings": "dist/qrcode-svg-ts.d.ts",
+  "scripts": {
+    "minify": "node minify.js",
+    "test": "node demo.js",
+    "example": "open ./examples/index.html"
+  },
+  "bin": {
+    "qrcode-svg": "qrcode-svg-ts.js"
+  },
+  "keywords": [
+    "qrcode",
+    "svg"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shlyren/qrcode-svg-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shlyren/qrcode-svg-ts/issues"
+  },
+  "homepage": "https://github.com/shlyren/qrcode-svg-ts",
+  "devDependencies": {
+    "minify": "^4.1.3"
+  },
+  "dependencies": {
+  }
+}
