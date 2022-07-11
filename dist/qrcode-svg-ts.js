@@ -1,3 +1,4 @@
+/*! qrcode-svg-ts v1.3.10 | https://github.com/shlyren/qrcode-svg-ts | MIT license */
 /**
  * @fileoverview
  * - modified davidshimjs/qrcodejs library for use in node.js

@@ -45,3 +45,6 @@ package-lock.json
 .Spotlight-V100
 .TemporaryItems
 .Trashes
+
+
+test/
