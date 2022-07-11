@@ -1205,17 +1205,19 @@ const Platform = {
 /** Writes QR Code image to a file */
 QRCodeSVG.prototype.save = function(file) {
 	function requireModule(name) {
-		return () => {
-			if (Platform.isNode) {
+		if (Platform.isNode) {
+			try {
 				const module = eval(`require('${name}')`)
 				return Promise.resolve(module)
+			} catch (error) {
+				return Promise.reject(error)
 			}
-			return Promise.reject('QRCodeSVG.save is available in node.js but not in a web browser')
 		}
+		return Promise.reject('QRCodeSVG.save is available in node.js but not in a web browser')
 	}
 
 	return new Promise((resolve, reject) => {
-		requireModule('fs')().then(fs => {
+		requireModule('fs').then(fs => {
 			var data = this.svg();
 			fs.writeFile(file, data, function(err) {
 				if (err) {
