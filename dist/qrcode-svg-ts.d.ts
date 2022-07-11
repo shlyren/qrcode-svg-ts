@@ -8,15 +8,15 @@ declare module "qrcode-svg-ts" {
          */
         content: string
         /**
-         * 二维码边距默认为0
+         * 二维码边距，默认0
          */
         padding?: number
         /**
-         * 二维码宽度
+         * 二维码宽度，默认256
          */
         width?: number
         /**
-         * 二维码高度
+         * 二维码高度，默认256
          */
         height?: number
         /**
@@ -28,9 +28,14 @@ declare module "qrcode-svg-ts" {
          */
         background?: string
         /**
-         * 容错级别 默认 H
+         * 容错级别 容错级别越高抗残破或遮挡的能力就越强，同时注意，提高容错级别会增大点阵密度，识别速度随之降低
+         * 默认 H
+         * L（低）：容错率为 7%
+         * M（中）：容错率为 15%
+         * Q（较高）：容错率为 25%
+         * H（高）：容错率为 30%
          */
-        ecl?: 'L'|'M'|'H'|'Q'
+        ecl?: 'L'|'M'|'Q'|'H'
         /**
          * 将模块（正方形）连接成一个形状，加入 SVGpath元素，推荐用于 Web 和响应式使用，默认值：true
          */
@@ -73,11 +78,11 @@ declare module "qrcode-svg-ts" {
          */
         toDataURL(): string
         /**
-         * 保存svg文件
-         * @param file 文件保存的路径 
+         * 保存svg文件 仅限nodejs
+         * @param filePath 文件保存的路径 
          * @param callback 保存的结果
          */
-        save(file: string, callback: QRCodeSVGCallBack): void
+        save(filePath: string, callback?: QRCodeSVGCallBack): void
     }
 
     export default QRCodeSVG;

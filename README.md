@@ -44,8 +44,8 @@ qrcode.save("sample.svg", function(error) {
 **List of options:**
 * **content** - QR Code content, the only **required** parameter
 * **padding** - white space padding, `0` modules by default, `0` for no border
-* **width** - QR Code width in pixels
-* **height** - QR Code height in pixels
+* **width** - QR Code width in pixels, default: `256`
+* **height** - QR Code height in pixels, default: `256`
 * **color** - color of modules (squares), color name or hex string, e.g. `#000000`
 * **background** - color of background, color name or hex string, e.g. `white`
 * **ecl** - error correction level: `L`, `M`, `H`, `Q`. default: `H`
