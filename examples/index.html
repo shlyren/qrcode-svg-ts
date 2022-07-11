@@ -38,6 +38,7 @@
         </div>
         <div style="margin-top: 24px">
           <button onclick="onCreateQRCode()">生成二维码</button>
+          <button onclick="onSaveQRCode()">保存二维码</button>
         </div>
     </div>
     <script src="../dist/qrcode-svg-ts.min.js"></script>
@@ -46,15 +47,28 @@
         function onCreateQRCode() {
           const content = document.getElementById('content').value
           const color = document.getElementById('color').value
-          console.log(content, color);
 
-         try {
-          var qrcode = new QRCodeSVG({ content, color, join: true, width: 500, height: 500 });
-          var svg = qrcode.svg();
-          document.getElementById("container").innerHTML = svg;
-         } catch (error) {
-          alert(error)
-         }
+          try {
+            var qrcode = new QRCodeSVG({ content, color, join: true, width: 500, height: 500 });
+            var svg = qrcode.svg();
+            document.getElementById("container").innerHTML = svg;
+          } catch (error) {
+            alert(error)
+          }
+        }
+        function onSaveQRCode() {
+          const content = document.getElementById('content').value
+          const color = document.getElementById('color').value
+
+          try {
+            var qrcode = new QRCodeSVG({ content, color, join: true, width: 500, height: 500 });
+            
+            qrcode.save('./qrcde-html.svg').then(() => {
+                console.log('保存成功')
+            }).catch(console.err)
+          } catch (error) {
+            alert(error)
+          }
         }
     </script>
     </body>

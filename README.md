@@ -33,10 +33,9 @@ var qrcode = new QRCode({
 
 var dataURL = qrcode.toDataURL()
 
-qrcode.save("sample.svg", function(error) {
-  if (error) throw error;
-  console.log("Done!");
-});
+qrcode.save("sample.svg").then(() => {
+    console.log('保存成功')
+}).catch(console.err)
 ```
 
 ## Options

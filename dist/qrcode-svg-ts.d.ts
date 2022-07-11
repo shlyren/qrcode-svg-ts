@@ -1,5 +1,4 @@
 declare module "qrcode-svg-ts" {
-    type QRCodeSVGCallBack = (error:any, result:any) => void
     type QRCodeSVGOptions = QRCodeSVGOption | string
     
     interface QRCodeSVGOption {
@@ -78,11 +77,10 @@ declare module "qrcode-svg-ts" {
          */
         toDataURL(): string
         /**
-         * 保存svg文件 仅限nodejs
+         * 保存svg文件 仅限nodejs环境，不支持浏览器
          * @param filePath 文件保存的路径 
-         * @param callback 保存的结果
          */
-        save(filePath: string, callback?: QRCodeSVGCallBack): void
+        save(filePath: string): Promise<string>
     }
 
     export default QRCodeSVG;

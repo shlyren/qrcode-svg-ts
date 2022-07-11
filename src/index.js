@@ -1190,20 +1190,43 @@ QRCodeSVG.prototype.svg = function(opt) {
 	return svg;
 };
 
+
+/**
+ * @see https://github.com/flexdinesh/browser-or-node/blob/master/src/index.js
+ */
+const Platform = {
+ 	isBrowser: typeof window !== "undefined" && typeof window['document'] !== "undefined",
+ 	isNode: typeof process !== "undefined" && process['versions'] != null && process['versions'].node != null,
+	isWebWorker: typeof self === "object" && self['constructor'] && self['constructor'].name === "DedicatedWorkerGlobalScope",
+	isJsDom: (typeof window !== "undefined" && window['name'] === "nodejs") || (typeof navigator !== "undefined" && (navigator.userAgent.includes("Node.js") || navigator.userAgent.includes("jsdom"))),
+	isDeno: typeof Deno !== "undefined" && typeof Deno['core'] !== "undefined",
+}
+
 /** Writes QR Code image to a file */
-QRCodeSVG.prototype.save = function(file, callback) {
-	var data = this.svg();
-	if (typeof callback != "function") {
-		callback = function(error, result) {};
+QRCodeSVG.prototype.save = function(file) {
+	function requireModule(name) {
+		return () => {
+			if (Platform.isNode) {
+				const requireKey = ''; requireKey = 'require'
+				const __require = global[requireKey]
+				return Promise.resolve(__require(name))
+			}
+			return Promise.reject('QRCodeSVG.save is available in node.js but not in a web browser')
+		}
 	}
-	try {
-		//Package 'fs' is available in node.js but not in a web browser
-		var fs = require('fs');
-		fs.writeFile(file, data, callback);
-	} catch(e) {
-		//Sorry, 'fs' is not available
-		callback(e);
-	}
+
+	return new Promise((resolve, reject) => {
+		requireModule('fs')().then(fs => {
+			var data = this.svg();
+			fs.writeFile(file, data, function(err) {
+				if (err) {
+					reject(err)
+				}else {
+					resolve(file)
+				}
+			});
+		}).catch(reject)
+	})
 };
 
 /** Generates QR Code as SVG image data url */
@@ -1211,11 +1234,6 @@ QRCodeSVG.prototype.toDataURL = function() {
 	var svg = this.svg();
 	return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 };
-
-
-// function createQRCode(options) {
-// 	return new QRCodeSVG(options)
-// }
 
 if (typeof module != "undefined") {
 	module.exports = QRCodeSVG;
