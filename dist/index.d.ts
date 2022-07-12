@@ -1,3 +1,4 @@
+/*! qrcode-svg-ts v1.4.0 | https://github.com/shlyren/qrcode-svg-ts | MIT license */
 declare module "qrcode-svg-ts" {
     type QRCodeSVGOptions = QRCodeSVGOption | string
     
@@ -81,6 +82,11 @@ declare module "qrcode-svg-ts" {
          * @param filePath 文件保存的路径 
          */
         save(filePath: string): Promise<string>
+
+        /**
+         * QR Code in ASCII to output in a shell
+         */
+        readonly modules: number[][]
     }
 
     export default QRCodeSVG;

@@ -1,6 +1,6 @@
 {
   "name": "qrcode-svg-ts",
-  "version": "1.3.11",
+  "version": "1.4.0",
   "description": "A simple QR Code generator in pure JavaScript",
   "author": "SHLYREN",
   "license": "MIT",
@@ -8,15 +8,14 @@
     "dist/*",
     "README*"
   ],
-  "main": "dist/qrcode-svg-ts.min.js",
-  "typings": "dist/qrcode-svg-ts.d.ts",
+  "main": "dist/index.min.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "build": "node minify.js",
     "example:node": "node ./examples/index.js",
     "example:html": "open ./examples/index.html"
   },
   "bin": {
-    "qrcode-svg": "qrcode-svg-ts.js"
   },
   "keywords": [
     "qrcode",

@@ -142,37 +142,6 @@ Output with `defs` and `use` elements
 </svg>
 ```
 
-## Command Line
-
-```
-Usage:
-  qrcode-svg [options] <content>
-
-Options:
-  --help                 Print this message
-  --version, -v          Print version number
-  --padding , -p [value] Offset in number of modules
-  --width, -w [px]       Image width in pixels
-  --height, -h [px]      Image height in pixels
-  --color, -fg [color]   Foreground color, hex or name
-  --background [color]   Background color, hex or name
-  --ecl [value]          Error correction level: L, M, H, Q
-  --join                 Join modules into one SVG path, i.e. for crisp rendering
-  --predefined           Use 'defs' and 'use' elements in SVG, i.e. for compact output
-  --no-prettify          Avoid indenting and new lines in SVG, i.e. for compact output
-  --viewbox              Use 'viewBox' instead of 'width' and 'height' attributes
-  --swap-fix             Swap X and Y modules to fix issues with some QR readers
-  --output, -o [file]    Output file name
-  --force, -f            Force overwrite
-
-Examples:
-  qrcode-svg http://github.com
-  qrcode-svg -f -o hello.svg "Hello World"
-  qrcode-svg -p 4 -w 256 -h 256 --join --viewbox "Responsive..."
-  qrcode-svg --padding 2 --width 120 --height 120 "Little fox..."
-  qrcode-svg --color blue --background #ececec "...jumps over" 
-```
-
 ## Usage Scenarios
 
 ### Convert to other formats
@@ -195,7 +164,7 @@ QR Code in ASCII to output in a shell
 var QRCode = require('qrcode-svg-ts');
 
 var hello = new QRCode("Hello World!");
-var modules = hello.qrcode.modules;
+var modules = hello.modules;
 
 var ascii = '';
 var length = modules.length;
@@ -210,8 +179,6 @@ console.log(ascii);
 ```
 
 ```
-
-
     xxxxxxx xx    x x xxxxxxx
     x     x  xxxx x x x     x
     x xxx x xx  xx  x x xxx x
@@ -237,8 +204,6 @@ console.log(ascii);
     x xxx x xxx  xx  x    x x
     x     x    x    x     x  
     xxxxxxx xxx xxx   x   x x
-
-
 ```
 
 ### Web browser
@@ -249,7 +214,7 @@ Use on a HTML page with JavaScript
 <html>
 <body>
 <div id="container"></div>
-<script src="./dist/qrcode-svg-ts.min.js"></script>
+<script src="./dist/index.min.js"></script>
 <script>
 var qrcode = new QRCodeSVG({
   content: "Hello World!",

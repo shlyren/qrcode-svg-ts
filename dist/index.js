@@ -1,4 +1,4 @@
-/*! qrcode-svg-ts v1.3.11 | https://github.com/shlyren/qrcode-svg-ts | MIT license */
+/*! qrcode-svg-ts v1.4.0 | https://github.com/shlyren/qrcode-svg-ts | MIT license */
 /**
  * @fileoverview
  * - modified davidshimjs/qrcodejs library for use in node.js
@@ -1068,6 +1068,7 @@ function QRCodeSVG(options) {
 	this.qrcode = new QRCodeModel(type, ecl);
 	this.qrcode.addData(content);
 	this.qrcode.make();
+	this.modules = this.qrcode.modules
 }
 
 /** Generates QR Code as SVG image */
