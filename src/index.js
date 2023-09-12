@@ -1205,10 +1205,10 @@ const Platform = {
 
 /** Writes QR Code image to a file */
 QRCodeSVG.prototype.save = function(file) {
-	function requireModule(name) {
+	async function requireModule(name) {
 		if (Platform.isNode) {
 			try {
-				const module = eval(`require('${name}')`)
+				const module = await import(name)
 				return Promise.resolve(module)
 			} catch (error) {
 				return Promise.reject(error)
